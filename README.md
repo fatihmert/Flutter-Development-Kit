@@ -7,7 +7,7 @@
   * **constants.dart:** Not yet beta. A shredded static class that holds the percent values of the dimensions for responsive designs.
   * **enums.dart:** Objective programming approach.
   * **helper.dart:** Chainable type static static class class with access to classes with `Singleton` design patterns under the *helpers* folder.
-  * **locator.dart:** More info [get_it ]([https://pub.dev/packages/get_it](https://pub.dev/packages/get_it)package
+  * **locator.dart:** More info [get_it ](https://pub.dev/packages/get_it) package
 
   * **config.dart:** It contains fixed information such as listing type settings of logs and API address. It should be `DevelopmentMode.PRODUCTION` in release mode.
 * helpers
@@ -17,7 +17,7 @@
   * Don't forget to define the services under this folder to the locator as *registerLazySingleton*.
 * ui
   * views
-    * page_name: MVVM based UI model, more info [stacked]([https://pub.dev/packages/stacked](https://pub.dev/packages/stacked) package.
+    * page_name: MVVM based UI model, more info [stacked](https://pub.dev/packages/stacked) package.
       * **_view**: Only UI
       * **_viewmodel**: Model file with the actions of the relevant screen. Extends `BaseViewModel` via _Provider_. So you can use `notifyListeners` in it.
   * **widgets**:  User-defined custom widgets
