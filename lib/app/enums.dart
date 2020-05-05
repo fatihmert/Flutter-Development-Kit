@@ -4,7 +4,7 @@ enum ResponsiveSize{
 
 enum ViewState {
   Idle,
-  Busy                // sunucudan veri alırken filan meşgul durumu
+  Busy                // Future processings
 }
 // LogManager
 
@@ -12,23 +12,17 @@ enum LogAction{
   CALLED,
   PRESSED,
   HTTP_RESPONSE,
-  HTTP_REQUEST,             // herhangi bir post data sunucuya post/get/put/delete...
+  HTTP_REQUEST,             // post/get/put/delete...
   API_LOG,
 }
 
 enum DevelopmentMode {
   DEVELOPMENT,
   PRODUCTION,
-  CUSTOM_OPTION         // belki lazım olur detaylı log vs işleri için
+  CUSTOM_OPTION         // additional
 }
 
 enum ApiLog{
   ACTIVE,
   PASSIVE
 }
-
-/*
-enum PricingDialogType {
-  SWIPEABLE,  //kaydırılan
-  SELECTABLE //seçilebilen
-}*/

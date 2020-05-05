@@ -22,6 +22,24 @@
       * **_viewmodel**: Model file with the actions of the relevant screen. Extends `BaseViewModel` via _Provider_. So you can use `notifyListeners` in it.
   * **widgets**:  User-defined custom widgets
 
+## Change package name
+
+I optimized the [rename](https://pub.dev/packages/rename) package. You can change your project information by making the necessary adjustments from the **build.env** file and running the `dart rename.dart` command on cli. _You will find the relevant explanations in the file._
+
+```dotenv
+# pubspec.yaml -> name
+FLUTTER_PACKAGE_NAME=flutterarch
+
+# App name appearing on the device
+APPLICATION_NAME=Flutter Arch
+
+# pubspec.yaml -> description
+APPLICATON_DESCRIPTION=A new Flutter architecture.
+
+# Package name; com.google.flutter etc.
+DOMAIN_NAME=fatihmert.dev.flutterarch
+```
+
 ## Basic Use
 
 ### Colors
