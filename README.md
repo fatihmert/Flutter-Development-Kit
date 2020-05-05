@@ -32,7 +32,7 @@
 
 [get](https://pub.dev/packages/get) package use for navigation. Example use; `Get.to(HomeScreen())`.
 
-> I needed this package as I wanted to divide the navigation operations into the viewmodel. The get package can provide navigation without BuildContext.
+> I needed this package as I wanted to divide the navigation operations into the viewmodel. The get package can provide navigation without BuildContext. You don't have to use it for your special animated route transitions.
 
 
 
