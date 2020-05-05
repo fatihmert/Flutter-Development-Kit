@@ -1,3 +1,5 @@
+// Source: https://stackoverflow.com/a/59386101/1555993
+
 class CustomTrace {
   final StackTrace _trace;
 
