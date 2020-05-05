@@ -3,6 +3,8 @@ import 'dart:async';
 
 class Path{
   String androidManifestPath = ".\\android\\app\\src\\main\\AndroidManifest.xml";
+  String androidProfilePath = ".\\android\\app\\src\\main\\profile\\AndroidManifest.xml";
+  String androidDebugPath = ".\\android\\app\\src\\main\\debug\\AndroidManifest.xml";
   String androidKotlinPath = ".\\android\\app\\src\\main\\kotlin\\"; //additional
   String iosInfoPlistPath = ".\\ios\\Runner\\Info.plist";
   String androidAppBuildGradlePath = ".\\android\\app\\build.gradle";
@@ -17,6 +19,8 @@ class Path{
   static Path get instance {
     if (Platform.isMacOS || Platform.isLinux) {
       _instance.androidManifestPath = "android/app/src/main/AndroidManifest.xml";
+      _instance.androidProfilePath = "android/app/src/main/profile/AndroidManifest.xml";
+      _instance.androidDebugPath = "android/app/src/main/debug/AndroidManifest.xml";
       _instance.androidKotlinPath = "android/app/src/main/kotlin/"; //additional
       _instance.iosInfoPlistPath = "ios/Runner/Info.plist";
       _instance.androidAppBuildGradlePath = "android/app/build.gradle";
@@ -170,6 +174,37 @@ class Android{
       content: contentLineByLine2.join('\n'),
     );
     print("Android manifest package name changed to : $newId");
+
+
+    List contentLineByLine3 = await Utils.readFileAsLineByline(
+      filePath: Path.instance.androidProfilePath,
+    );
+    for (int i = 0; i < contentLineByLine3.length; i++) {
+      if (contentLineByLine3[i].contains("package")) {
+        contentLineByLine3[i] = "        package=\"${newId.toString()}\"";
+        break;
+      }
+    }
+    File writtenFile3 = await Utils.writeFile(
+      filePath: Path.instance.androidProfilePath,
+      content: contentLineByLine3.join('\n'),
+    );
+    print("Android profile package name changed to : $newId");
+
+    List contentLineByLine4 = await Utils.readFileAsLineByline(
+      filePath: Path.instance.androidDebugPath,
+    );
+    for (int i = 0; i < contentLineByLine4.length; i++) {
+      if (contentLineByLine4[i].contains("package")) {
+        contentLineByLine4[i] = "        package=\"${newId.toString()}\"";
+        break;
+      }
+    }
+    File writtenFile4 = await Utils.writeFile(
+      filePath: Path.instance.androidDebugPath,
+      content: contentLineByLine4.join('\n'),
+    );
+    print("Android debug package name changed to : $newId");
     
   }
 }
