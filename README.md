@@ -19,5 +19,20 @@
   * views
     * page_name: MVVM based UI model, more info [stacked]([https://pub.dev/packages/stacked](https://pub.dev/packages/stacked) package.
       * **_view**: Only UI
-      * **_viewmodel**: Model file with the actions of the relevant screen.
+      * **_viewmodel**: Model file with the actions of the relevant screen. Extends `BaseViewModel` via _Provider_. So you can use `notifyListeners` in it.
   * **widgets**:  User-defined custom widgets
+
+## Basic Use
+
+### Colors
+
+`ColorTable.<colorName>` or `ColorTable.fromHex('#FF0000')`
+
+### Navigation
+
+[get](https://pub.dev/packages/get) package use for navigation. Example use; `Get.to(HomeScreen())`.
+
+> I needed this package as I wanted to divide the navigation operations into the viewmodel. The x package can provide navigation without BuildContext.
+
+
+
