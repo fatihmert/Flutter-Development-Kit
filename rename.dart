@@ -3,13 +3,14 @@ import 'dart:async';
 
 class Path{
   String androidManifestPath = ".\\android\\app\\src\\main\\AndroidManifest.xml";
-  String androidProfilePath = ".\\android\\app\\src\\main\\profile\\AndroidManifest.xml";
-  String androidDebugPath = ".\\android\\app\\src\\main\\debug\\AndroidManifest.xml";
+  String androidProfilePath = ".\\android\\app\\src\\profile\\AndroidManifest.xml";
+  String androidDebugPath = ".\\android\\app\\src\\debug\\AndroidManifest.xml";
   String androidKotlinPath = ".\\android\\app\\src\\main\\kotlin\\"; //additional
   String iosInfoPlistPath = ".\\ios\\Runner\\Info.plist";
   String androidAppBuildGradlePath = ".\\android\\app\\build.gradle";
   String iosProjectPbxprojPath = ".\\ios\\Runner.xcodeproj\\project.pbxproj";
   String macosAppInfoxprojPath = ".\\macos\\Runner\\Configs\\AppInfo.xcconfig";
+  String macosRootPath = ".\\macos";
   String pubspec = ".\\pubspec.yaml";
 
   Path._privateConstructor();
@@ -19,13 +20,14 @@ class Path{
   static Path get instance {
     if (Platform.isMacOS || Platform.isLinux) {
       _instance.androidManifestPath = "android/app/src/main/AndroidManifest.xml";
-      _instance.androidProfilePath = "android/app/src/main/profile/AndroidManifest.xml";
-      _instance.androidDebugPath = "android/app/src/main/debug/AndroidManifest.xml";
+      _instance.androidProfilePath = "android/app/src/profile/AndroidManifest.xml";
+      _instance.androidDebugPath = "android/app/src/debug/AndroidManifest.xml";
       _instance.androidKotlinPath = "android/app/src/main/kotlin/"; //additional
       _instance.iosInfoPlistPath = "ios/Runner/Info.plist";
       _instance.androidAppBuildGradlePath = "android/app/build.gradle";
       _instance.iosProjectPbxprojPath = "ios/Runner.xcodeproj/project.pbxproj";
       _instance.macosAppInfoxprojPath = "macos/Runner/Configs/AppInfo.xcconfig";
+      _instance.macosRootPath = "macos";
       _instance.pubspec = "pubspec.yaml";
     }
     return _instance;
@@ -229,20 +231,28 @@ class Apple {
   }
 
   Future<File> changeMacOsBundleId({String bundleId}) async {
-    List contentLineByLine = await Utils.readFileAsLineByline(
-      filePath: Path.instance.macosAppInfoxprojPath,
-    );
-    for (int i = 0; i < contentLineByLine.length; i++) {
-      if (contentLineByLine[i].contains("PRODUCT_BUNDLE_IDENTIFIER")) {
-        contentLineByLine[i] = "PRODUCT_BUNDLE_IDENTIFIER = $bundleId;";
+
+    bool dirExist = await Directory(Path.instance.macosRootPath).exists();
+
+    if (dirExist){
+
+      List contentLineByLine = await Utils.readFileAsLineByline(
+        filePath: Path.instance.macosAppInfoxprojPath,
+      );
+      for (int i = 0; i < contentLineByLine.length; i++) {
+        if (contentLineByLine[i].contains("PRODUCT_BUNDLE_IDENTIFIER")) {
+          contentLineByLine[i] = "PRODUCT_BUNDLE_IDENTIFIER = $bundleId;";
+        }
       }
+      File writtenFile = await Utils.writeFile(
+        filePath: Path.instance.macosAppInfoxprojPath,
+        content: contentLineByLine.join('\n'),
+      );
+      print("MacOS BundleIdentifier changed successfully to : $bundleId");
+      return writtenFile;
     }
-    File writtenFile = await Utils.writeFile(
-      filePath: Path.instance.macosAppInfoxprojPath,
-      content: contentLineByLine.join('\n'),
-    );
-    print("MacOS BundleIdentifier changed successfully to : $bundleId");
-    return writtenFile;
+
+    return null;
   }
 
   Future<File> changeIosAppName(String appName) async {
@@ -264,21 +274,28 @@ class Apple {
   }
 
   Future<File> changeMacOsAppName(String appName) async {
-    List contentLineByLine = await Utils.readFileAsLineByline(
-      filePath: Path.instance.macosAppInfoxprojPath,
-    );
-    for (int i = 0; i < contentLineByLine.length; i++) {
-      if (contentLineByLine[i].contains("PRODUCT_NAME")) {
-        contentLineByLine[i] = "PRODUCT_NAME = $appName;";
-        break;
+    bool dirExist = await Directory(Path.instance.macosRootPath).exists();
+
+    if (dirExist){
+      List contentLineByLine = await Utils.readFileAsLineByline(
+        filePath: Path.instance.macosAppInfoxprojPath,
+      );
+      for (int i = 0; i < contentLineByLine.length; i++) {
+        if (contentLineByLine[i].contains("PRODUCT_NAME")) {
+          contentLineByLine[i] = "PRODUCT_NAME = $appName;";
+          break;
+        }
       }
+      File writtenFile = await Utils.writeFile(
+        filePath: Path.instance.macosAppInfoxprojPath,
+        content: contentLineByLine.join('\n'),
+      );
+      print("MacOS appname changed successfully to : $appName");
+      return writtenFile;
     }
-    File writtenFile = await Utils.writeFile(
-      filePath: Path.instance.macosAppInfoxprojPath,
-      content: contentLineByLine.join('\n'),
-    );
-    print("MacOS appname changed successfully to : $appName");
-    return writtenFile;
+
+    return null;
+
   }
 }
 
