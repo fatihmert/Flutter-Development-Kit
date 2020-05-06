@@ -329,18 +329,7 @@ void main(List<String> args) async{
       var splitted = line.split("=");
       build[splitted[0]] = splitted[1];
     }
-  } 
-
-  // FileRepository repo = new FileRepository();
-
-  // Change app name
-  // await repo.changeAndroidAppName(build["APPLICATION_NAME"]);
-  // await repo.changeIosAppName(build["APPLICATION_NAME"]);
-  // await repo.changeMacOsAppName(build["APPLICATION_NAME"]);
-
-  // Bundle Id
-  // await repo.changeIosBundleId(bundleId: build["DOMAIN_NAME"]);
-  // await repo.changeMacOsBundleId(bundleId: build["DOMAIN_NAME"]);
+  }
 
   Android android = new Android();
   Apple apple = new Apple();
@@ -357,7 +346,7 @@ void main(List<String> args) async{
   await apple.changeMacOsAppName(build["APPLICATION_NAME"]);
   await apple.changeMacOsBundleId(bundleId: build["DOMAIN_NAME"]);
 
-  await pubspec.change(build["APPLICATION_NAME"], build["APPLICATON_DESCRIPTION"])
+  await pubspec.change(build["APPLICATION_NAME"], build["APPLICATON_DESCRIPTION"]);
 
   print("----------------------------------");
   print("COMPLETED RENAME PROCESSING");

@@ -11,7 +11,7 @@ It is in beta stage yet, thank you for your understanding in advance. I advise y
 
   * **enums.dart:** Objective programming approach.
 
-  * **helper.dart:** Chainable type static static class class with access to classes with `Singleton` design patterns under the *helpers* folder.
+  * **helper.dart:** Chainable type static class. Static class with access to classes with `Singleton` design patterns under the *helpers* folder.
 
   * **locator.dart:** More info [get_it ](https://pub.dev/packages/get_it) package
 
@@ -31,7 +31,7 @@ It is in beta stage yet, thank you for your understanding in advance. I advise y
 
 ## Change package name
 
-I optimized the [rename](https://pub.dev/packages/rename) package. You can change your project information by making the necessary adjustments from the **build.env** file and running the `dart rename.dart` command on cli. _You will find the relevant explanations in the file._
+I optimized the [rename](https://pub.dev/packages/rename) package. You can change your project information by making the necessary adjustments from the **build.env** file and running the `dart rename.dart` command on CLI. _You will find the relevant explanations in the file._
 
 ```dotenv
 # pubspec.yaml -> name
@@ -54,7 +54,6 @@ DOMAIN_NAME=fatihmert.dev.flutterarch
 ### JSON to Dart Model
 
 If you are working locally, you can automatically convert your JSON files to model files with the `tools/package/json_to_dart` path or at [json_to_dart](https://javiercbk.github.io/json_to_dart/). 
-
 
 
 ## Basic Use
