@@ -167,7 +167,7 @@ class Android{
     );
     for (int i = 0; i < contentLineByLine2.length; i++) {
       if (contentLineByLine2[i].contains("package")) {
-        contentLineByLine2[i] = "        package=\"${newId.toString()}\"";
+        contentLineByLine2[i] = "        package=\"${newId.toString()}\">";
         break;
       }
     }
@@ -183,7 +183,7 @@ class Android{
     );
     for (int i = 0; i < contentLineByLine3.length; i++) {
       if (contentLineByLine3[i].contains("package")) {
-        contentLineByLine3[i] = "        package=\"${newId.toString()}\"";
+        contentLineByLine3[i] = "        package=\"${newId.toString()}\">";
         break;
       }
     }
@@ -198,7 +198,7 @@ class Android{
     );
     for (int i = 0; i < contentLineByLine4.length; i++) {
       if (contentLineByLine4[i].contains("package")) {
-        contentLineByLine4[i] = "        package=\"${newId.toString()}\"";
+        contentLineByLine4[i] = "        package=\"${newId.toString()}\">";
         break;
       }
     }
