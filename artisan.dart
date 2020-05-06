@@ -59,7 +59,7 @@ void main(List<String> arguments) async{
     }
   }
 
-  print("ARTISAN:: ${artisan.toString()}");
+//  print("ARTISAN:: ${artisan.toString()}");
 
   if(arguments.length == 2){
     // Only View and Widget
@@ -110,8 +110,32 @@ void main(List<String> arguments) async{
 
           print("CREATED ${viewName.toString()} View !");
         });
-
       }
+    } else if (arguments[0].toLowerCase() == "widget"){
+      var name = arguments[1];
+      var widgetNamePrefix = Utils.pascalCase(name);
+
+      var widgetName = widgetNamePrefix + artisan["WIDGET_APPENDIX"];
+      var widgetFileName = name + "_" + artisan["WIDGET_APPENDIX"].toLowerCase();
+
+      bool exists = await Directory(Path.instance.widgets + widgetFileName).exists();
+      if (exists){
+        throw("Already ${Path.instance.widgets + widgetFileName} widget exists!");
+      }else{
+        var _widgetFile = new File(Path.instance.templates + artisan["WIDGET_TEMPLATE"]).readAsStringSync();
+        _widgetFile = _widgetFile.replaceAll("{WIDGET_NAME}", widgetName);
+
+//        print("WidgetName:: $widgetName | WidgetFileName:: $widgetFileName");
+//        print("WIDGET:: ${_widgetFile.toString()}");
+
+        await Utils.writeFile(
+            filePath: Path.instance.widgets + widgetFileName + ".dart",
+            content: _widgetFile
+        );
+
+        print("CREATED ${widgetName.toString()} Widet !");
+      }
+
     }
   }
 

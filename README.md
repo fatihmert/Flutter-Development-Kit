@@ -51,7 +51,7 @@ DOMAIN_NAME=fatihmert.dev.flutterarch
 
 ## Artisan
 
-You can create models, views, widgets through this structure like _Laravel_ artisan. For now, only **view** is defined.
+You can create models, views, widgets through this structure like _Laravel_ artisan. For now, only **view** and **widget** is defined.
 
 ### Create View
 
@@ -61,7 +61,9 @@ Creates blank pages suitable for the stacked architecture.
 
 ### Create Widget
 
-> TODO
+Create empty (so contain Text Widget) widget in to the `ui/widgets` folder.
+
+`dart artisan.dart widget <view-name>` example `dart artisan.dart widget test`
 
 ### Create Model
 
