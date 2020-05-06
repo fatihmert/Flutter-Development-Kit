@@ -1,5 +1,7 @@
 # Flutter - Boilerplate
 
+It is in beta stage yet, thank you for your understanding in advance. I advise you to read the entire document so that you do not receive any errors resulting from the shortcomings.
+
 ## File Structure
 
 * app
@@ -44,6 +46,16 @@ APPLICATON_DESCRIPTION=A new Flutter architecture.
 # Package name; com.google.flutter etc.
 DOMAIN_NAME=fatihmert.dev.flutterarch
 ```
+
+> For now, if you change the **FLUTTER_PACKAGE_NAME** key value; You will also need to change the `include 'package: flutterarch';` module inclusion from all of your code. 
+
+## Tools
+
+### JSON to Dart Model
+
+If you are working locally, you can automatically convert your JSON files to model files with the `tools/package/json_to_dart` path or at [json_to_dart](https://javiercbk.github.io/json_to_dart/). 
+
+
 
 ## Basic Use
 

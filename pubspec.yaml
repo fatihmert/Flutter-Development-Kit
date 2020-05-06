@@ -37,6 +37,9 @@ dependencies:
   # inversion of control
   get_it:
 
+  # HTTP
+  http: ^0.12.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
