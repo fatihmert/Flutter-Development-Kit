@@ -50,13 +50,17 @@ You can create models, views, widgets through this structure like _Laravel_ arti
 
 Creates blank pages suitable for the stacked architecture.
 
-`dart artisan view <view-name>` example `dart artisan view test`  command run then auto generated view files in `lib/ui/` path.
+`dart artisan view <view-name> [--reactive]` example `dart artisan view test`  command run then auto generated view files in `lib/ui/` path.
+
+If you use `--reactive`, you can trigger state updates using the **notifyListener()** function provided by Provider. Click for reactive [more info](https://pub.dev/packages/stacked#reactive).
 
 ### Create Widget
 
 Create empty (so contain Text Widget) widget in to the `ui/widgets` folder.
 
-`dart artisan widget <view-name>` example `dart artisan widget test` command run then auto generated widget file in `lib/widgets` path.
+`dart artisan widget <view-name> [--statefull]` example `dart artisan widget test` command run then auto generated widget file in `lib/widgets` path.
+
+If you use `--statefull`, It will wrap the _Widget_ you create with State. You can also do this with Android Studio and VSCode. (See `alt + enter`) 
 
 ### Create Model
 

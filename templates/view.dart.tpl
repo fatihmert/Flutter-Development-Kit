@@ -7,6 +7,15 @@ class {VIEW_NAME} extends ViewModelBuilderWidget<{VIEW_MODEL_NAME}>{
   const {VIEW_NAME}({Key key}) : super(key: key);
 
   @override
+  bool get reactive => {REACTIVE_STATUS};
+
+  @override
+  bool get createNewModelOnInsert => false;
+
+  @override
+  bool get disposeViewModel => true;
+
+  @override
   Widget builder(BuildContext context, {VIEW_MODEL_NAME} model, Widget child) {
     return Scaffold(
       body: Center(

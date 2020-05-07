@@ -48,7 +48,7 @@ class Path{
 Map<String, String> artisan;
 
 void main(List<String> arguments) async{
-  print(arguments.toString());
+//  print(arguments.toString());
 
   // init empty artisan.env object
   artisan = Map();
@@ -64,7 +64,7 @@ void main(List<String> arguments) async{
 
 //  print("ARTISAN:: ${artisan.toString()}");
 
-  if(arguments.length == 2){
+  if(arguments.length >= 2){
     // Only View and Widget
 
     if(arguments[0].toLowerCase() == "view"){ // Create view
@@ -94,6 +94,19 @@ void main(List<String> arguments) async{
 
 //        print("NEW_VIEW_FILE:: ${_viewFile.toString()}");
 //        print("NEW_VIEW_MODEL_FILE:: ${_viewModelFile.toString()}");
+
+        var reactiveStatus = false;
+        try {
+          var reactive = arguments[2].toLowerCase();
+//          print("REACTIVE_STATUS:: $reactive");
+          if (reactive == "--reactive") {
+            reactiveStatus = true;
+          }
+        } on RangeError{
+          reactiveStatus = false;
+        }
+
+        _viewFile = _viewFile.replaceAll("{REACTIVE_STATUS}", reactiveStatus.toString());
 
         new Directory(Path.instance.views + folderName).create().then((Directory newDir) async{
           var transPathForPlatform = newDir.path + "\\";
@@ -125,63 +138,78 @@ void main(List<String> arguments) async{
       if (exists){
         throw("Already ${Path.instance.widgets + widgetFileName} widget exists!");
       }else{
+
+        var statefullStatus = false;
+        try {
+          var statefull = arguments[2].toLowerCase();
+//          print("REACTIVE_STATUS:: $reactive");
+          if (statefull == "--statefull") {
+            statefullStatus = true;
+          }
+        } on RangeError{
+          statefullStatus = false;
+        }
+
         var _widgetFile = new File(Path.instance.templates + artisan["WIDGET_TEMPLATE"]).readAsStringSync();
+        if(statefullStatus == true){
+          _widgetFile = new File(Path.instance.templates + artisan["WIDGET_STATEFULL_TEMPLATE"]).readAsStringSync();
+        }
+
+
         _widgetFile = _widgetFile.replaceAll("{WIDGET_NAME}", widgetName);
 
 //        print("WidgetName:: $widgetName | WidgetFileName:: $widgetFileName");
 //        print("WIDGET:: ${_widgetFile.toString()}");
+
 
         await Utils.writeFile(
             filePath: Path.instance.widgets + widgetFileName + ".dart",
             content: _widgetFile
         );
 
-        print("CREATED ${widgetName.toString()} Widet !");
+        print("CREATED ${widgetName.toString()} Widget !");
       }
 
     }
-  }else if(arguments.length >= 3){
+  }else if(arguments.length >= 3 && arguments[0].toLowerCase() == "model"){
     // FROM FILE:   model model.json ModelName [--private]
 
     // TODO: follow command;
     // FROM URL:    model http://../a.json ModelName
 
-    if (arguments[0].toLowerCase() == "model"){
-      var JSON_NAME = arguments[1];
-      var MODEL_NAME = arguments[2];
+    var JSON_NAME = arguments[1];
+    var MODEL_NAME = arguments[2];
 
-      bool isPrivate = false, isURL = false;
+    bool isPrivate = false, isURL = false;
 
-      try{
-        if(arguments[3].toLowerCase() == "--private"){
-          isPrivate = true;
-        }
-      } on RangeError{
-        isPrivate = false;
+    try{
+      if(arguments[3].toLowerCase() == "--private"){
+        isPrivate = true;
       }
-
-      var urlPattern = r"(https?|http)://([-A-Z0-9.]+)(/[-A-Z0-9+&@#/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#/%=~_|!:‌​,.;]*)?";
-      var match = new RegExp(urlPattern, caseSensitive: false).firstMatch(JSON_NAME);
-
-      isURL = match != null;
-
-      var findModelFileName = MODEL_NAME.toLowerCase() + '.dart';
-
-      print("ARTISAN.MODEL -> JSON{url: ${isURL.toString()}}: $JSON_NAME | MODEL: $MODEL_NAME | private: ${isPrivate.toString()}");
-      print("FIND_FILE_NAME:: ${findModelFileName}");
-
-      // dart .\json2dart.dart model sample.json Test false false .\lib\models\
-      // dartaotruntime .\json2dart.aot model sample.json Test3 false false .\lib\models\
-
-      var subprocess = 'dartaotruntime json2dart.aot model $JSON_NAME $MODEL_NAME ${isPrivate.toString()} false ${Path._instance.models}';
-      print("SUBPROCESS:: $subprocess");
-
-      Process.run(subprocess, [], runInShell: true).then((result) {
-        stdout.write(result.stdout);
-        stderr.write(result.stderr);
-      });
-
+    } on RangeError{
+      isPrivate = false;
     }
+
+    var urlPattern = r"(https?|http)://([-A-Z0-9.]+)(/[-A-Z0-9+&@#/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#/%=~_|!:‌​,.;]*)?";
+    var match = new RegExp(urlPattern, caseSensitive: false).firstMatch(JSON_NAME);
+
+    isURL = match != null;
+
+    var findModelFileName = MODEL_NAME.toLowerCase() + '.dart';
+
+    print("ARTISAN.MODEL -> JSON{url: ${isURL.toString()}}: $JSON_NAME | MODEL: $MODEL_NAME | private: ${isPrivate.toString()}");
+    print("FIND_FILE_NAME:: ${findModelFileName}");
+
+    // dart .\json2dart.dart model sample.json Test false false .\lib\models\
+    // dartaotruntime .\json2dart.aot model sample.json Test3 false false .\lib\models\
+
+    var subprocess = 'dartaotruntime json2dart.aot model $JSON_NAME $MODEL_NAME ${isPrivate.toString()} false ${Path._instance.models}';
+    print("SUBPROCESS:: $subprocess");
+
+    Process.run(subprocess, [], runInShell: true).then((result) {
+      stdout.write(result.stdout);
+      stderr.write(result.stderr);
+    });
 
   }
 

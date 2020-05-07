@@ -7,6 +7,15 @@ class StartupView extends ViewModelBuilderWidget<StartupViewModel>{
   const StartupView({Key key}) : super(key: key);
 
   @override
+  bool get reactive => false;
+
+  @override
+  bool get createNewModelOnInsert => false;
+
+  @override
+  bool get disposeViewModel => true;
+
+  @override
   Widget builder(BuildContext context, StartupViewModel model, Widget child) {
     return Scaffold(
       body: Center(
