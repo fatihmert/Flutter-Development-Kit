@@ -305,18 +305,18 @@ class PubSpec{
       filePath: Path.instance.pubspec,
     );
 
-    int i = 0;
+    int j = 0;
 
     for (int i = 0; i < contentLineByLine.length; i++) {
       if (contentLineByLine[i].contains("name:")) {
         contentLineByLine[i] = "name: $appName;";
-        i++;
+        j++;
       }
       if (contentLineByLine[i].contains("description:")) {
         contentLineByLine[i] = "description: $description;";
-        i++;
+        j++;
       }
-      if (i == 2){
+      if (j == 2){
         break;
       }
     }
@@ -352,7 +352,7 @@ void main(List<String> args) async{
   Apple apple = new Apple();
   PubSpec pubspec = new PubSpec();
 
-  
+
   var currentPackageName = await Utils.getCurrentAndroidBundleId();
 
   await android.changeAndroidAppName(build["APPLICATION_NAME"]);
