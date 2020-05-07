@@ -44,7 +44,7 @@ DOMAIN_NAME=fatihmert.dev.flutterarch
 
 ## Artisan
 
-You can create models, views, widgets through this structure like _Laravel_ artisan. For now, only **view** and **widget** is defined.
+You can create models, views, widgets through this structure like _Laravel_ artisan.
 
 ### Create View
 
