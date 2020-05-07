@@ -26,7 +26,7 @@ It is in beta stage yet, thank you for your understanding in advance. I advise y
 
 ## Change package name
 
-I optimized the [rename](https://pub.dev/packages/rename) package. You can change your project information by making the necessary adjustments from the **build.env** file and running the `dart rename.dart` command on CLI. _You will find the relevant explanations in the file._
+If you want use this package your projects, see [rn](https://pub.dev/packages/rn) on pubdev. You can change your project information by making the necessary adjustments from the **build.env** file and running the `dart rename.dart` command on CLI. _You will find the relevant explanations in the file._
 
 ```dotenv
 # pubspec.yaml -> name
