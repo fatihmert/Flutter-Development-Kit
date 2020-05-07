@@ -380,7 +380,6 @@ void main(List<String> args) async{
   Apple apple = new Apple();
   PubSpec pubspec = new PubSpec();
 
-
   var currentPackageName = await Utils.getCurrentAndroidBundleId();
 
   await android.changeAndroidAppName(build["APPLICATION_NAME"]);

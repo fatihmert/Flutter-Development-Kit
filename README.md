@@ -6,15 +6,10 @@ It is in beta stage yet, thank you for your understanding in advance. I advise y
 
 * app
   * **colors.dart:** A simple static class for reading fixed colors and css hex colors in the application. 
-
   * **constants.dart:** Not yet beta. A shredded static class that holds the percent values of the dimensions for responsive designs.
-
   * **enums.dart:** Objective programming approach.
-
   * **helper.dart:** Chainable type static class. Static class with access to classes with `Singleton` design patterns under the *helpers* folder.
-
   * **locator.dart:** More info [get_it ](https://pub.dev/packages/get_it) package
-
   * **config.dart:** It contains fixed information such as listing type settings of logs and API address. It should be `DevelopmentMode.PRODUCTION` in release mode.
 * helpers
   * responsive.dart: (Example for `app/helper.dart`)
@@ -55,24 +50,33 @@ You can create models, views, widgets through this structure like _Laravel_ arti
 
 Creates blank pages suitable for the stacked architecture.
 
-`dart artisan.dart view <view-name>` example `dart artisan.dart view test`
+`dart artisan view <view-name>` example `dart artisan view test`  command run then auto generated view files in `lib/ui/` path.
 
 ### Create Widget
 
 Create empty (so contain Text Widget) widget in to the `ui/widgets` folder.
 
-`dart artisan.dart widget <view-name>` example `dart artisan.dart widget test`
+`dart artisan widget <view-name>` example `dart artisan widget test` command run then auto generated widget file in `lib/widgets` path.
 
 ### Create Model
 
-> TODO
+Since it is unnecessary to create a blank model from the command line; You can convert models from **.json** files using the [json_to_dart](https://javiercbk.github.io/json_to_dart/) package. 
+
+```
+dart artisan model <json-file> <model-name> [--private] 
+```
+
+Example;
+
+`dart artisan model model.json ModelName` or with private fields `dart artisan model model.json ModelName --private` command run then auto generated model file in `lib/models` path.
+
+> To keep the project clean; I did not include this package in the project. I have compiled a program to create AOT file and run it via CLI. You can find the source of the native .aot file in the `json2dart.dart` file.
 
 ## Tools
 
 ### JSON to Dart Model
 
-If you are working locally, you can automatically convert your JSON files to model files with the `tools/package/json_to_dart` path or at [json_to_dart](https://javiercbk.github.io/json_to_dart/). 
-
+[json_to_dart](https://javiercbk.github.io/json_to_dart/) or use our `artisan model` command.
 
 ## Basic Use
 
