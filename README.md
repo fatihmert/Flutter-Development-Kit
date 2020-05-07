@@ -42,6 +42,10 @@ APPLICATON_DESCRIPTION=A new Flutter architecture.
 DOMAIN_NAME=fatihmert.dev.flutterarch
 ```
 
+## Special Comments
+
+There are comments lines that you should not delete, starting with `cmt::`, which comes with the project. I thought of it as a practical solution without manipulating the dart code. For now, only our `artisan helper` command set uses them.
+
 ## Artisan
 
 You can create models, views, widgets through this structure like _Laravel_ artisan.
@@ -76,6 +80,12 @@ Example;
 
 > To keep the project clean; I did not include this package in the project. I have compiled a program to create AOT file and run it via CLI. You can find the source of the native .aot file in the `json2dart.dart` file.
 
+### Create Helper
+
+Generated a empty `Singleton` pattern class in `lib/helpers` path and auto identified `app/helper.dart` file. More info [singleton-pattern](https://en.wikipedia.org/wiki/Singleton_pattern).
+
+`dart artisan helper <helper-name>` example `dart artisan helper utils` 
+
 ## Tools
 
 ### JSON to Dart Model
@@ -93,3 +103,5 @@ Example;
 [get](https://pub.dev/packages/get) package use for navigation. Example use; `Get.to(HomeScreen())`.
 
 > I needed this package as I wanted to divide the navigation operations into the viewmodel. The get package can provide navigation without BuildContext. You don't have to use it for your special animated route transitions.
+
+

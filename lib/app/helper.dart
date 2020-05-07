@@ -1,6 +1,7 @@
 // My Bundle Design Pattern
 
 import '../helpers/responsive.dart';
+//cmt::IMPORT_NEW_HELPER -> DON'T REMOVE THIS
 
 class Helper {
   /*
@@ -8,4 +9,5 @@ class Helper {
   * */
   static Responsive get responsive => Responsive.instance;
 
+//cmt::ADD_NEW_HELPER -> DON'T REMOVE THIS
 }

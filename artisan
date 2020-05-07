@@ -27,6 +27,10 @@ class Path{
 
   String models = ".\\lib\\models\\";
 
+  String helpers = ".\\lib\\helpers\\";
+  String helper = ".\\lib\\app\\helper.dart";
+
+
   Path._privateConstructor();
 
   static final Path _instance = Path._privateConstructor();
@@ -38,7 +42,11 @@ class Path{
       _instance.ui = "lib/ui/";
       _instance.views = "lib/ui/views/";
       _instance.widgets = "lib/ui/widgets/";
-      _instance.models = "lib/ui/models/";
+
+      _instance.models = "lib/models/";
+
+      _instance.helpers = "lib/helpers/";
+      _instance.helper = "lib/app/helper.dart";
     }
     return _instance;
   }
@@ -168,6 +176,48 @@ void main(List<String> arguments) async{
         );
 
         print("CREATED ${widgetName.toString()} Widget !");
+      }
+
+    } else if (arguments[0].toLowerCase() == "helper"){
+      var name = arguments[1];
+      var className = Utils.pascalCase(name);
+      var newHelperFileName = className.toLowerCase();
+
+      bool exists = await File(Path.instance.helpers + newHelperFileName + ".dart").exists();
+      if (exists){
+        throw("Already ${Path.instance.helpers + newHelperFileName + ".dart"} helper exists!");
+      }else{
+        var _helperFile = new File(Path.instance.templates + artisan["HELPER_TEMPLATE"]).readAsStringSync();
+        _helperFile = _helperFile.replaceAll("{HELPER_NAME}", className);
+
+        await Utils.writeFile(
+            filePath: Path.instance.helpers + newHelperFileName + ".dart",
+            content: _helperFile
+        );
+
+        List contentLineByLine = await Utils.readFileAsLineByline(
+          filePath: Path.instance.helper,
+        );
+
+        int j = 0;
+        for (int i = 0; i < contentLineByLine.length; i++) {
+          if (contentLineByLine[i].contains("//cmt::IMPORT_NEW_HELPER")) {
+            contentLineByLine[i] = "import '../helpers/$newHelperFileName.dart';\n\r${artisan["IMPORT_NEW_HELPER"]}";
+            j++;
+          }
+          if (contentLineByLine[i].contains("//cmt::ADD_NEW_HELPER")) {
+            contentLineByLine[i] = "  static $className get $newHelperFileName => $className.instance;\n\r${artisan["ADD_NEW_HELPER"]}";
+            j++;
+          }
+          if (j == 2){
+            break;
+          }
+        }
+
+        await Utils.writeFile(
+          filePath: Path.instance.helper,
+          content: contentLineByLine.join('\n'),
+        );
       }
 
     }
