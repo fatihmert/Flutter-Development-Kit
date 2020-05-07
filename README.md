@@ -47,8 +47,6 @@ APPLICATON_DESCRIPTION=A new Flutter architecture.
 DOMAIN_NAME=fatihmert.dev.flutterarch
 ```
 
-> For now, if you change the **FLUTTER_PACKAGE_NAME** key value; You will also need to change the `include 'package: flutterarch';` module inclusion from all of your code. 
-
 ## Artisan
 
 You can create models, views, widgets through this structure like _Laravel_ artisan. For now, only **view** and **widget** is defined.

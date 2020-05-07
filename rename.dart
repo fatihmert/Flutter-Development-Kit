@@ -12,6 +12,7 @@ class Path{
   String macosAppInfoxprojPath = ".\\macos\\Runner\\Configs\\AppInfo.xcconfig";
   String macosRootPath = ".\\macos";
   String pubspec = ".\\pubspec.yaml";
+  String appLibPath = ".\\lib\\";
 
   Path._privateConstructor();
 
@@ -29,6 +30,7 @@ class Path{
       _instance.macosAppInfoxprojPath = "macos/Runner/Configs/AppInfo.xcconfig";
       _instance.macosRootPath = "macos";
       _instance.pubspec = "pubspec.yaml";
+      _instance.appLibPath = "lib/";
     }
     return _instance;
   }
@@ -328,6 +330,32 @@ class PubSpec{
 
     print("Updated pubspec.yaml: $appName | $description");
     return writtenFile;
+  }
+
+  Future<void> renameAllPackageNamesUnderLibFolder(String oldPackageName, String newPackageName) async{
+    Directory lib = new Directory(Path.instance.appLibPath);
+    lib.list(recursive: true).forEach((file) async{
+      if (file.path.split('.').last == "dart"){
+        List contentLineByLine = await Utils.readFileAsLineByline(
+          filePath: file.path,
+        );
+
+        for (int i = 0; i < contentLineByLine.length; i++) {
+          if (contentLineByLine[i].contains("import 'package:$oldPackageName")) {
+            contentLineByLine[i] = contentLineByLine[i].toString().replaceAll("package:$oldPackageName", "package:$newPackageName");
+            // print("${file.path}:: " + contentLineByLine[i]);
+            // print("REPLACE_TEST:: " + contentLineByLine[i].toString().replaceAll("package:$oldPackageName", "package:$newPackageName"));
+          }
+        }
+
+        File writtenFile = await Utils.writeFile(
+          filePath: file.path,
+          content: contentLineByLine.join('\n'),
+        );
+      }
+    });
+
+    print("Updated lib under dart files' import package names: $oldPackageName -> $newPackageName");
   }
 }
 
