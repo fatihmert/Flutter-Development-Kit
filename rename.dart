@@ -393,6 +393,8 @@ void main(List<String> args) async{
 
   await pubspec.change(build["APPLICATION_NAME"], build["APPLICATON_DESCRIPTION"]);
 
+  await pubspec.renameAllPackageNamesUnderLibFolder(currentPackageName, build["FLUTTER_PACKAGE_NAME"]);
+
   print("----------------------------------");
   print("COMPLETED RENAME PROCESSING");
   print("----------------------------------");
