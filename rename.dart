@@ -311,11 +311,11 @@ class PubSpec{
 
     for (int i = 0; i < contentLineByLine.length; i++) {
       if (contentLineByLine[i].contains("name:")) {
-        contentLineByLine[i] = "name: $appName;";
+        contentLineByLine[i] = "name: $appName";
         j++;
       }
       if (contentLineByLine[i].contains("description:")) {
-        contentLineByLine[i] = "description: $description;";
+        contentLineByLine[i] = "description: $description";
         j++;
       }
       if (j == 2){

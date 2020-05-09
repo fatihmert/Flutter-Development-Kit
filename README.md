@@ -48,7 +48,7 @@ There are comments lines that you should not delete, starting with `cmt::`, whic
 
 ## Artisan
 
-You can create models, views, widgets through this structure like _Laravel_ artisan.
+You can create models, views, widgets through this structure like _Laravel_ artisan. You can find the *artisan* related templates in the path of `./templates`.
 
 ### Create View
 
