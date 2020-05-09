@@ -390,7 +390,7 @@ void main(List<String> args) async{
   await apple.changeMacOsAppName(build["APPLICATION_NAME"]);
   await apple.changeMacOsBundleId(bundleId: build["DOMAIN_NAME"]);
 
-  await pubspec.change(build["APPLICATION_NAME"], build["APPLICATON_DESCRIPTION"]);
+  await pubspec.change(build["FLUTTER_PACKAGE_NAME"], build["APPLICATON_DESCRIPTION"]);
 
   await pubspec.renameAllPackageNamesUnderLibFolder(currentPackageName, build["FLUTTER_PACKAGE_NAME"]);
 
