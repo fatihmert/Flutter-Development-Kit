@@ -16,6 +16,11 @@ class {VIEW_NAME} extends ViewModelBuilderWidget<{VIEW_MODEL_NAME}>{
   bool get disposeViewModel => true;
 
   @override
+  void onViewModelReady(StartupViewModel model) {
+    super.onViewModelReady(model);
+  }
+
+  @override
   Widget builder(BuildContext context, {VIEW_MODEL_NAME} model, Widget child) {
     return Scaffold(
       body: Center(
