@@ -1,4 +1,4 @@
-// My Bundle Design Pattern
+// Facade Design Pattern
 
 import '../helpers/responsive.dart';
 //cmt::IMPORT_NEW_HELPER -> DON'T REMOVE THIS
