@@ -16,6 +16,22 @@ class Utils{
   static String pascalCase(String term){
     return '${term.substring(0, 1).toUpperCase()}${term.substring(1).toLowerCase()}';
   }
+
+  static String weed(String str){
+    return "\x1B[32m$str\x1B[0m";
+  }
+
+  static String blood(String str){
+    return "\x1B[31m$str\x1B[0m";
+  }
+
+  static String yellow(String str){
+    return "\x1B[33m$str\x1B[0m";
+  }
+
+  static String orange(String str){
+    return "\x1B[34m$str\x1B[0m";
+  }
 }
 
 class Path{
@@ -92,7 +108,8 @@ void main(List<String> arguments) async{
       bool exists = await Directory(Path.instance.views + folderName).exists();
 
       if (exists){
-        throw("Already ${Path.instance.views + folderName} directory exists!");
+//        print(Utils.weed(str))
+        throw(Utils.orange("Already ${Path.instance.views + folderName} directory exists!"));
       }else{
         var _viewFile = new File(Path.instance.templates + artisan["VIEW_TEMPLATE"]).readAsStringSync();
         var _viewModelFile = new File(Path.instance.templates + artisan["VIEWMODEL_TEMPLATE"]).readAsStringSync();
@@ -132,7 +149,7 @@ void main(List<String> arguments) async{
             content: _viewModelFile
           );
 
-          print("CREATED ${viewName.toString()} View !");
+          print(Utils.weed("CREATED ${viewName.toString()} View !"));
         });
       }
     } else if (arguments[0].toLowerCase() == "widget"){
@@ -144,7 +161,7 @@ void main(List<String> arguments) async{
 
       bool exists = await Directory(Path.instance.widgets + widgetFileName).exists();
       if (exists){
-        throw("Already ${Path.instance.widgets + widgetFileName} widget exists!");
+        throw(Utils.orange("Already ${Path.instance.widgets + widgetFileName} widget exists!"));
       }else{
 
         var statefullStatus = false;
@@ -175,7 +192,7 @@ void main(List<String> arguments) async{
             content: _widgetFile
         );
 
-        print("CREATED ${widgetName.toString()} Widget !");
+        print(Utils.weed("CREATED ${widgetName.toString()} Widget !"));
       }
 
     } else if (arguments[0].toLowerCase() == "helper"){
@@ -185,7 +202,7 @@ void main(List<String> arguments) async{
 
       bool exists = await File(Path.instance.helpers + newHelperFileName + ".dart").exists();
       if (exists){
-        throw("Already ${Path.instance.helpers + newHelperFileName + ".dart"} helper exists!");
+        throw(Utils.orange("Already ${Path.instance.helpers + newHelperFileName + ".dart"} helper exists!"));
       }else{
         var _helperFile = new File(Path.instance.templates + artisan["HELPER_TEMPLATE"]).readAsStringSync();
         _helperFile = _helperFile.replaceAll("{HELPER_NAME}", className);
@@ -247,19 +264,21 @@ void main(List<String> arguments) async{
 
     var findModelFileName = MODEL_NAME.toLowerCase() + '.dart';
 
-    print("ARTISAN.MODEL -> JSON{url: ${isURL.toString()}}: $JSON_NAME | MODEL: $MODEL_NAME | private: ${isPrivate.toString()}");
-    print("FIND_FILE_NAME:: ${findModelFileName}");
+//    print("ARTISAN.MODEL -> JSON{url: ${isURL.toString()}}: $JSON_NAME | MODEL: $MODEL_NAME | private: ${isPrivate.toString()}");
+//    print("FIND_FILE_NAME:: ${findModelFileName}");
 
     // dart .\json2dart.dart model sample.json Test false false .\lib\models\
     // dartaotruntime .\json2dart.aot model sample.json Test3 false false .\lib\models\
 
     var subprocess = 'dartaotruntime json2dart.aot model $JSON_NAME $MODEL_NAME ${isPrivate.toString()} false ${Path._instance.models}';
-    print("SUBPROCESS:: $subprocess");
+//    print("SUBPROCESS:: $subprocess");
 
     Process.run(subprocess, [], runInShell: true).then((result) {
       stdout.write(result.stdout);
       stderr.write(result.stderr);
     });
+
+    print(Utils.weed("Model created!"));
 
   }
 
