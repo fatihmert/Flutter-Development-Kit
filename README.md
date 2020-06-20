@@ -5,7 +5,7 @@ It is in beta stage yet, thank you for your understanding in advance. I advise y
 ## File Structure
 
 * app
-  * **colors.dart:** A simple static class for reading fixed colors and css hex colors in the application. 
+  * **colors.dart:** A simple static class for reading fixed colors and css hex colors in the application. _You can develop your business logic_
   * **constants.dart:** Not yet beta. A shredded static class that holds the percent values of the dimensions for responsive designs.
   * **enums.dart:** Objective programming approach.
   * **helper.dart:** `Facade` type static class. Static class with access to classes with `Singleton` design patterns under the *helpers* folder.

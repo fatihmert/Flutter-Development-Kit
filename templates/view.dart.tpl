@@ -16,7 +16,7 @@ class {VIEW_NAME} extends ViewModelBuilderWidget<{VIEW_MODEL_NAME}>{
   bool get disposeViewModel => true;
 
   @override
-  void onViewModelReady(StartupViewModel model) {
+  void onViewModelReady({VIEW_MODEL_NAME} model) {
     super.onViewModelReady(model);
   }
 
