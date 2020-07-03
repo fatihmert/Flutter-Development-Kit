@@ -107,7 +107,7 @@ Generated a empty `Singleton` pattern class in `lib/helpers` path and auto ident
 
 # Let's create the best flutter kit together.
 
-**If you have any think development progresses for this repository, please share on issue panel or mail to me (fmdogancan95@gmail.com), so shortly if you want. **
+**If you have any think development progresses for this repository, please share on issue panel or mail to me (fmdogancan95@gmail.com), so shortly if you want.**
 
 # TODO
 
