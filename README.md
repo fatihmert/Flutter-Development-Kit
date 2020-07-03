@@ -1,11 +1,11 @@
-# Flutter - Boilerplate
+# Flutter - Development Kit
 
 It is in beta stage yet, thank you for your understanding in advance. I advise you to read the entire document so that you do not receive any errors resulting from the shortcomings.
 
 ## File Structure
 
-* app
-  * **colors.dart:** A simple static class for reading fixed colors and css hex colors in the application. _You can develop your business logic_
+* app: _You can develop your business logic_
+  * **colors.dart:** A simple static class for reading fixed colors and css hex colors in the application. 
   * **constants.dart:** Not yet beta. A shredded static class that holds the percent values of the dimensions for responsive designs.
   * **enums.dart:** Objective programming approach.
   * **helper.dart:** `Facade` type static class. Static class with access to classes with `Singleton` design patterns under the *helpers* folder.
