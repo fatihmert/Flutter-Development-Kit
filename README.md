@@ -105,7 +105,7 @@ Generated a empty `Singleton` pattern class in `lib/helpers` path and auto ident
 
 > I needed this package as I wanted to divide the navigation operations into the viewmodel. The get package can provide navigation without BuildContext. You don't have to use it for your special animated route transitions.
 
-# Let's create the best flutter kit together.
+# Let's create the best flutter dev kit together.
 
 **If you have any think development progresses for this repository, please share on issue panel or mail to me (fmdogancan95@gmail.com), so shortly if you want.**
 
