@@ -17,6 +17,7 @@ enum LogAction{
 }
 
 enum DevelopmentMode {
+  TESTING, //expanded use trace, time etc...
   DEVELOPMENT,
   PRODUCTION,
   CUSTOM_OPTION         // additional
