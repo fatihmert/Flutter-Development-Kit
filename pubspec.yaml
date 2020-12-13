@@ -40,6 +40,9 @@ dependencies:
   # HTTP
   http: ^0.12.2
 
+  # Relax coding ;)
+  supercharged: ^1.12.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
