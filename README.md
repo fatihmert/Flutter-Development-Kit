@@ -25,6 +25,10 @@ If you think any issue/advice please open issue like your want. Do not think tha
       * **_viewmodel**: Model file with the actions of the relevant screen. Extends `BaseViewModel` via _Provider_. So you can use `notifyListeners` in it.
   * **widgets**:  User-defined custom widgets
 
+## Animation
+
+You can not use `SingleTickerProviderStateMixin` with `stacked` module, [simple_animation](https://pub.dev/packages/simple_animations) module solve this problem. 
+
 ## Change package name
 
 If you want use this package your projects, see [rn](https://pub.dev/packages/rn) on pubdev. You can change your project information by making the necessary adjustments from the **build.env** file and running the `dart rename.dart` command on CLI. _You will find the relevant explanations in the file._
