@@ -43,6 +43,9 @@ dependencies:
   # Relax coding ;)
   supercharged: ^1.12.0
 
+  # Log class
+  logger: ^0.9.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
