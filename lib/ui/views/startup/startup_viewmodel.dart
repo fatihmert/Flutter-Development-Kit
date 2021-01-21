@@ -10,6 +10,14 @@ import 'package:stacked/stacked.dart';
 class StartupViewModel extends BaseViewModel {
   final ThemeService _themeService = locator<ThemeService>();
 
+  String _title = "HookUp";
+  String get title => _title;
+
+  void updateTitle(String newTitle) {
+    _title = newTitle;
+    notifyListeners();
+  }
+
   void navigateToHome() async {
     Get.to(HomeView());
   }

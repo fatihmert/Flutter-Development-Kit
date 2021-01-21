@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterarch/ui/views/startup/hooks/sample_hook.dart';
 import 'package:stacked/stacked.dart';
 
 import 'startup_viewmodel.dart';
@@ -20,9 +21,14 @@ class StartupView extends ViewModelBuilderWidget<StartupViewModel> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Center(
-        child: Text(
-          'Startup View',
-          style: Theme.of(context).textTheme.headline1,
+        child: Column(
+          children: [
+            Text(
+              'Startup View',
+              style: Theme.of(context).textTheme.headline1,
+            ),
+            SampleHook(),
+          ],
         ),
       ),
       floatingActionButton: Row(
@@ -33,6 +39,7 @@ class StartupView extends ViewModelBuilderWidget<StartupViewModel> {
             child: Icon(Icons.brush),
             onPressed: () async {
               model.changeTheme();
+              model.updateTitle('Test hook');
             },
           ),
           SizedBox(

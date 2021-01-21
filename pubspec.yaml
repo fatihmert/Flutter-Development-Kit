@@ -34,6 +34,9 @@ dependencies:
   # theme management
   stacked_themes:
 
+  # hook widgets
+  stacked_hooks: ^0.1.3+2
+
   # navigation
   get:
 

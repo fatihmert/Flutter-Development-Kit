@@ -5,8 +5,8 @@ import 'package:stacked_themes/stacked_themes.dart';
 import 'app/locator.dart';
 import 'package:get/get.dart';
 
-void main() async {
-  setupLocator();
+Future<void> main() async {
+  await setupLocator();
   await ThemeManager.initialise();
   runApp(MyApp());
 }
