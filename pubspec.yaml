@@ -28,8 +28,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
 
-  #state management
+  # state management
   stacked: ^1.7.6
+
+  # theme management
+  stacked_themes:
 
   # navigation
   get:

@@ -3,7 +3,7 @@ import 'package:stacked/stacked.dart';
 
 import 'startup_viewmodel.dart';
 
-class StartupView extends ViewModelBuilderWidget<StartupViewModel>{
+class StartupView extends ViewModelBuilderWidget<StartupViewModel> {
   const StartupView({Key key}) : super(key: key);
 
   @override
@@ -18,13 +18,33 @@ class StartupView extends ViewModelBuilderWidget<StartupViewModel>{
   @override
   Widget builder(BuildContext context, StartupViewModel model, Widget child) {
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Center(
         child: Text(
-            'Startup View'
+          'Startup View',
+          style: Theme.of(context).textTheme.headline1,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: model.navigateToHome,
+      floatingActionButton: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          FloatingActionButton(
+            child: Icon(Icons.brush),
+            onPressed: () async {
+              model.changeTheme();
+            },
+          ),
+          SizedBox(
+            width: 5,
+          ),
+          FloatingActionButton(
+            child: Icon(Icons.arrow_right),
+            onPressed: () async {
+              model.navigateToHome();
+            },
+          ),
+        ],
       ),
     );
   }
