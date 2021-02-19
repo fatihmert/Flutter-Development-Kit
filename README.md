@@ -14,6 +14,7 @@ If you think any issue/advice please open issue like your want. Do not think tha
   * **locator.dart:** More info [get_it ](https://pub.dev/packages/get_it) package. You should define services objects here. (`Singleton` pattern)
   * **config.dart:** It contains fixed information such as listing type settings of logs and API address. It should be `DevelopmentMode.PRODUCTION` in release mode.
   * **validates.dart:** It contains regex some main validations for inputs.
+  * **request.dart:** Extending from `http.BaseClient` for easyly using like axios; set default headers and endpoint. You can access with `locator`. You can setting default headers from `app/config.dart`.
 * helpers
   * responsive.dart: (Example for `app/helper.dart`, examine that)
 * **models**: For parsing JSON objects and other object oriented approaches.
@@ -93,6 +94,28 @@ Generated a empty `Singleton` pattern class in `lib/helpers` path and auto ident
 
 `dart artisan helper <helper-name>` example `dart artisan helper utils` 
 
+## Request
+
+Using easy like js axios that its extending `http.BaseClient`. For example jsonplaceholder `https://jsonplaceholder.typicode.com/todos/<uint>`
+
+```dart
+class JsonPlaceholder {
+  Request rq = locator<Request>();
+
+  Future<TestTodoModel> getTodo(int todoId) async {
+    return TestTodoModel.fromJson(
+        json.decode((await rq.get('todos/${todoId.toString()}')).body)
+    );
+  }
+}
+```
+
+### TODO
+
+ - [ ] Add RESTful validateStatus control (like axios)
+ - [ ] Add JWT Support with Persistance (SharedPref)
+
+
 ## Tools
 
 ### JSON to Dart Model
@@ -115,6 +138,11 @@ Generated a empty `Singleton` pattern class in `lib/helpers` path and auto ident
 
 **If you have any think development progresses for this repository, please share on issue panel or mail to me (fmdogancan95@gmail.com), so shortly if you want.**
 
-# TODO
+# General TODO
 
-- [ ] I think should be little sqlite for this kit control for some operations. Like for from save constant comment template.
+ - [ ] I think should be little sqlite for this kit control for some operations. Like for from save constant comment template.
+ - [ ] Restructured (actually improvements) architecture
+ - [ ] MultiLanguage Supporting
+ - [ ] Breaking special comments
+ - [ ] Create UI manager for both CLI commands and pubspec.yaml (like Vue UI)
+
