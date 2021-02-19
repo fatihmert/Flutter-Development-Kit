@@ -141,6 +141,8 @@ class JsonPlaceholder {
 # General TODO
 
  - [ ] I think should be little sqlite for this kit control for some operations. Like for from save constant comment template.
+ - [ ] Update and fixing build.env file
+ - [ ] Testing json2dart.aot runtime file
  - [ ] Restructured (actually improvements) architecture
  - [ ] MultiLanguage Supporting
  - [ ] Breaking special comments
